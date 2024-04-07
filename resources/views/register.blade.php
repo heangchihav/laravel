@@ -2,38 +2,33 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body>
+<form action="/user/register" method="post">
+    @csrf
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input class="btn btn-primary" type="submit" value="Register" />
+            </td>
+        </tr>
+    </table>
+</form>
 
-    <head>
-        <title>Form Example</title>
-    </head>
-    <form action="/user/register" method="post">
-        @csrf
-        <table>
+<br>
 
-            <tr>
-                <td>Name</td>
-                <td><input type="text" name="name"></td>
-            </tr>
-            <tr>
-                <td>Username</td>
-                <td><input type="text" name="username"></td>
-            </tr>
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="password"></td>
-            </tr>
-            <tr>
+@forelse ($getData as $item)
+<li href="">{{ $item }}</li>
+@empty
+<li>No data!</li>
+@endforelse
 
-                <td><input type="submit" value="register"></td>
-            </tr>
-        </table>
-    </form>
 </body>
 
 </html>

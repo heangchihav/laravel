@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class RegistrationController extends Controller
 {
     public function postRegister(Request $request)
     {
         $name = $request->input('name');
-        echo 'Name: ' . $name;
-        echo '<br>';
 
-        $username = $request->input('username');
-        echo 'Username: ' . $username;
-        echo '<br>';
+        $getData = json_decode(Cookie::get("cat"));
 
-        $password = $request->input('password');
-        echo 'Password: ' . $password;
+        array_push($getData, $name);
+
+        Cookie::queue("cat", json_encode($getData),  30);
+
+        return redirect(route('register'));
     }
 }
