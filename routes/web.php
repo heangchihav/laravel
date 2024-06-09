@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Cookie;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,20 +8,23 @@ use Illuminate\Support\Facades\Cookie;
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
 |
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/register', function () {
-    if (!isset($_COOKIE['cat'])) {
-        Cookie::queue('cat', json_encode([]), 30);
-    }
-    $getData = json_decode(Cookie::get("cat"));
-    return view('register', compact("getData"));
-})->name("register");
+    return view('dashboard');
+})->name('dashboard');
 
-Route::post('/user/register', [RegistrationController::class, 'postRegister']);
+Route::get('/age', function () {
+    return view('age');
+})->name('age');
+
+Route::get('/gender', function () {
+    return view('gender');
+})->name('gender');
+
+Route::get('/geo', function () {
+    return view('geo');
+})->name('geo');
